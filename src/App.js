@@ -22,7 +22,8 @@ const App = () => {
   const searchMovies = async (title) => {
     const response = await fetch(`${API_URL}&s=${title}`);
     const data = await response.json();
-    setMovies(data.Search);
+    if(data.Search.length === 0);
+    else setMovies(data.Search);
   };
   useEffect(() => {
     searchMovies("batman");
