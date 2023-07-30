@@ -22,8 +22,13 @@ const App = () => {
   const searchMovies = async (title) => {
     const response = await fetch(`${API_URL}&s=${title}`);
     const data = await response.json();
-    if(data.Search.length === 0);
-    else setMovies(data.Search);
+    if (
+      data.Search === undefined //It was giving error when we write a movie name which doesn't exist, so data.Search === undefined.
+    ) {
+      setMovies(movie1);
+    } else {
+      setMovies(data.Search);
+    }
   };
   useEffect(() => {
     searchMovies("batman");
